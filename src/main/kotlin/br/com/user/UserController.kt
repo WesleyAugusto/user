@@ -7,7 +7,7 @@ import io.micronaut.http.annotation.Get
 class UserController {
 
     @Get("/get")
-    fun getUsers(){
-        println("entrou aqui")
+    fun getUsers():String{
+        return "seja bem vindo"
     }
 }
