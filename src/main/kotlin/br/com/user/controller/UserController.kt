@@ -1,5 +1,7 @@
-package br.com.user
+package br.com.user.controller
 
+import br.com.user.model.UserRequest
+import br.com.user.service.UserService
 import io.micronaut.context.annotation.Parameter
 import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
@@ -15,12 +17,8 @@ class UserController {
     }
 
     @Post
-    fun postUser(@Body user:User ):String{
-        return "seja bem vindo ${user.email} ${user.name}"
+    fun postUser(@Body user: UserRequest): String {
+        println(user)
+        return UserService().validationUser(user)
     }
 }
-
-data class User(
-    val email:String,
-    val name:String?
-)
