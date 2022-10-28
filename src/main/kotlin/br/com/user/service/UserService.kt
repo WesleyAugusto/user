@@ -6,7 +6,7 @@ class UserService {
     fun validationUser(userRequest: UserRequest): String {
         return if (userRequest.age < 18) {
             "Voce e menor de idade"
-        } else if (userRequest.email?.contains("@") ?: false == false) {
+        } else if (userRequest.email?.contains("@") != true) {
             "email invalido "
         } else if (userRequest.name.length < 3) {
             "nome invalido"
