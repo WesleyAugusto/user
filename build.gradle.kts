@@ -25,6 +25,9 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
 
+    //mongo
+    implementation("io.micronaut.mongodb:micronaut-mongo-sync")
+
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 }
