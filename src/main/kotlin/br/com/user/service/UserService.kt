@@ -4,10 +4,16 @@ import br.com.user.model.UserRequest
 
 class UserService{
     fun validationUser(userRequest: UserRequest): String {
-        if(userRequest.age>=18){
-            return "maior de idade"
+        if(userRequest.age < 18){
+            return "Voce e menor de idade"
         }
-        return "menor de idade"
+        if(userRequest.email?.contains("@") ?: false == false){
+            return "email invalido "
+        }
 
+        if (userRequest.name.length < 3){
+            return "nome invalido"
+        }
+        return "parabens cadastrou"
     }
 }

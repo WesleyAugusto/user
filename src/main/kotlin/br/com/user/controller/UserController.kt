@@ -18,7 +18,7 @@ class UserController {
 
     @Post
     fun postUser(@Body user: UserRequest): String {
-        println(user)
+
         return UserService().validationUser(user)
     }
 }
