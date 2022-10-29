@@ -9,6 +9,10 @@ import jakarta.inject.Singleton
 class UserService(
     private val userRepositoryPort: UserRepositoryPort
 ) : UserServicePort {
+    override fun getUser(email: String): UserEntity? {
+       return userRepositoryPort.findOneUserRepository(email)
+    }
+
     override fun validationUser(userRequest: UserRequest): String {
         return if (userRequest.age < 18) {
             "Voce e menor de idade"

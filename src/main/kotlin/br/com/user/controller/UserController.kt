@@ -1,5 +1,6 @@
 package br.com.user.controller
 
+import br.com.user.model.UserEntity
 import br.com.user.model.UserRequest
 import br.com.user.service.UserServicePort
 import io.micronaut.context.annotation.Parameter
@@ -11,9 +12,10 @@ import io.micronaut.http.annotation.Post
 @Controller("/user")
 class UserController(private val userServicePort: UserServicePort) {
 
-    @Get("/{name}")
-    fun getUser(@Parameter name: String): String {
-        return "seja bem vindo $name"
+    @Get("/{email}")
+    fun getUser(@Parameter email: String): UserEntity? {
+        println(email)
+        return userServicePort.getUser(email)
     }
 
     @Post
