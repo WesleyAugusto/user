@@ -8,18 +8,23 @@ import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Post
+import io.micronaut.http.annotation.Put
 
 @Controller("/user")
 class UserController(private val userServicePort: UserServicePort) {
 
     @Get("/{email}")
     fun getUser(@Parameter email: String): UserEntity? {
-        println(email)
         return userServicePort.getUser(email)
     }
 
     @Post
-    fun postUser(@Body user: UserRequest): String {
-        return userServicePort.validationUser(user)
+    fun postUser(@Body user: UserRequest): UserEntity {
+        return userServicePort.postUser(user)
+    }
+
+    @Put
+    fun putUser(@Body user:UserRequest): UserEntity{
+        return userServicePort.putUser(user)
     }
 }

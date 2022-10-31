@@ -1,10 +1,12 @@
 package br.com.user.model
 
 import br.com.user.commons.annotations.NoArg
+import io.micronaut.core.annotation.Introspected
 
 @NoArg
+@Introspected
 data class UserEntity(
-    val email:String?,
-    val name:String,
-    val age:Int
+    var email:String?,
+    var name:String,
+    var age:Int
 )
