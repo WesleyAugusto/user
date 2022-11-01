@@ -9,6 +9,11 @@ import jakarta.inject.Singleton
 class UserService(
     private val userRepositoryPort: UserRepositoryPort
 ) : UserServicePort {
+
+    override fun getAllUsers(): List<UserEntity> {
+        return userRepositoryPort.findAllUsersRepository()
+    }
+
     override fun getUser(email: String): UserEntity? {
         return userRepositoryPort.findOneUserRepository(email)
     }
@@ -25,6 +30,9 @@ class UserService(
         return userRepositoryPort.putUserRepository(userEntity)
     }
 
+    override fun deleteUser(email: String): String {
+        return userRepositoryPort.deleteUserRepository(email)
+    }
 
     private fun validationUser(userRequest: UserRequest) {
         if (userRequest.age < 18) {

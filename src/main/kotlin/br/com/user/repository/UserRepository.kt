@@ -9,6 +9,11 @@ import jakarta.inject.Singleton
 class UserRepository(
     private val mongoClient: MongoClient
 ) : UserRepositoryPort {
+
+    override fun findAllUsersRepository(): List<UserEntity> {
+        return getColaction().find().toList()
+    }
+
     override fun findOneUserRepository(email: String): UserEntity? {
         return getColaction().find(Filters.eq("email", email)).toList().first()
     }
@@ -23,11 +28,19 @@ class UserRepository(
     }
 
     override fun putUserRepository(userEntity: UserEntity): UserEntity {
-         val response = getColaction().replaceOne(Filters.eq("email", userEntity.email), userEntity).modifiedCount
-        if (response == 0L){
+        val response = getColaction().replaceOne(Filters.eq("email", userEntity.email), userEntity).modifiedCount
+        if (response == 0L) {
             throw Exception("conta nao modificada")
         }
         return userEntity
+    }
+
+    override fun deleteUserRepository(email: String): String {
+        val response = getColaction().findOneAndDelete(Filters.eq("email", email)) ?: 0
+        if (response == 0) {
+            return "Este Email: $email Nao Foi Deletado"
+        }
+        return "Este Email: $email Foi Deletado "
     }
 
     private fun getColaction() =

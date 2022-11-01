@@ -6,7 +6,7 @@ import io.micronaut.core.annotation.Introspected
 @NoArg
 @Introspected
 data class UserEntity(
-    var email:String?,
-    var name:String,
-    var age:Int
+    var email: String?,
+    var name: String,
+    var age: Int
 )
